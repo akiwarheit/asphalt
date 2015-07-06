@@ -5,35 +5,46 @@ The idea is that I can define a form as such
 
 ```
 <!-- Sample form without all the properties because I'm lazy as f -->
-<LinearForm>
-    <EditText />
-    <EditText />
-    <EditText />
-</LinearForm>
+    <com.keeboi.asphalt.view.LinearForm
+        android:id="@+id/linear_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kevin Jude Deloria" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Programmer" />
+
+    </com.keeboi.asphalt.view.LinearForm>
 ```
 
 And automatically bind it to an object
 
 ```java
-@Form
-public class User {
-    @Field
-    private String name;
-    
-    @Field
-    private String surname;
-    
-    @Field
-    private String title;
-    
-    // Getters & setters
-}
+    @Form
+    public class Person {
+
+        @Field
+        private String name;
+
+        @Field
+        private String occupation;
+
+        // Getters & setters
+    }
 ```
 
 And it gets bound when I refer the `LinearForm` as such
 
 ```java
-    User user = ((LinearForm<User>) findViewById(R.id.linear_form)).getObject();
+    LinearForm<Person> linearForm = ((LinearForm<Person>) findViewById(R.id.linear_form));
+    linearForm.bind(Person.class);
+    Person user = linearForm.getObject();
 ```
 
 Or something like that
