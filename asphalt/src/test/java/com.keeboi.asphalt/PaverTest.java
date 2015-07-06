@@ -38,7 +38,7 @@ public class PaverTest {
     }
 
     @Test
-    public void testPaverObjectInstantiation() throws UnableToInstantiateException {
+    public void testPaverObjectInstantiation() throws UnableToInstantiateException, IllegalAccessException {
         System.out.println("testPaverObjectInstantiation");
         Paver<User> paver = new Paver<User>(User.class, null);
         User user = paver.instantiate();
@@ -46,7 +46,7 @@ public class PaverTest {
     }
 
     @Test
-    public void testPaverObjectInstantiationWithException() throws UnableToInstantiateException {
+    public void testPaverObjectInstantiationWithException() throws UnableToInstantiateException, IllegalAccessException {
         thrown.expect(UnableToInstantiateException.class);
         System.out.println("testPaverObjectInstantiationWithException");
         Paver<UserNonForm> paver = new Paver<UserNonForm>(UserNonForm.class, null);

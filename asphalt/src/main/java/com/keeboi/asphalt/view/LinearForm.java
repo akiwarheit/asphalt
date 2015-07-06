@@ -38,11 +38,17 @@ public class LinearForm<K> extends LinearLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
+    /**
+     * Iterate over all the child views and assign it to the constructor of Paver
+     *
+     * @param clazz the output object
+     * @throws NoFormAnnotationException throws if the class being passed does not have @Form annotation
+     */
     public void bind(Class<K> clazz) throws NoFormAnnotationException {
         List<View> childViews = new ArrayList<View>();
 
         for (int x = 0; x < getChildCount(); x += 1) {
-            childViews.add(getChildAt(0));
+            childViews.add(getChildAt(x));
         }
 
         paver = new Paver<K>(clazz, childViews);
@@ -51,7 +57,14 @@ public class LinearForm<K> extends LinearLayout {
         }
     }
 
-    public K getObject() throws UnableToInstantiateException {
+    /**
+     * Get the instantiated object
+     *
+     * @return the instantiated object
+     * @throws UnableToInstantiateException something went wrong with instantiation
+     * @throws IllegalAccessException
+     */
+    public K getObject() throws UnableToInstantiateException, IllegalAccessException {
         K object = paver.instantiate();
         return object;
     }

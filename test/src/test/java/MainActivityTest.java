@@ -44,12 +44,15 @@ public class MainActivityTest {
     }
 
     @Test
-    public void testBind() throws UnableToInstantiateException, NoFormAnnotationException {
+    public void testBind() throws UnableToInstantiateException, NoFormAnnotationException, IllegalAccessException {
         System.out.println("testBind");
         Person person = null;
         userLinearForm.bind(Person.class);
         person = userLinearForm.getObject();
         Assert.assertNotNull(person);
+
+        Assert.assertEquals(person.getName(), "Kevin Jude Deloria");
+        Assert.assertEquals(person.getOccupation(), "Programmer");
     }
 
 }
