@@ -39,7 +39,7 @@ And it gets bound when I refer the `LinearForm` as such
 Or something like that
 
 <pre>
-Copyright [2015] [Kevin Jude A. Deloria]
+Copyright 2015 Kevin Jude A. Deloria
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
