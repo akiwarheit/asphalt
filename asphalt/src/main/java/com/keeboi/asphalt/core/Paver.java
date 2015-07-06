@@ -1,20 +1,28 @@
 package com.keeboi.asphalt.core;
 
+import android.view.View;
+
 import com.keeboi.asphalt.annotation.Form;
+import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 /**
  * Created by kdeloria on 7/3/2015.
- *
+ * <p/>
  * Main class in charge of reflection.
  */
 public class Paver<K> {
 
-    Class<K> classType;
+    private Class<K> classType;
 
-    public Paver(Class<K> classType) {
+    private List<View> views;
+
+    public Paver(Class<K> classType, List<View> views) {
         this.classType = classType;
+        this.views = views;
     }
 
     public boolean isFormAnnotated() {
@@ -22,4 +30,21 @@ public class Paver<K> {
         return annotation == null ? false : true;
     }
 
+    public K instantiate() throws UnableToInstantiateException {
+        K object = null;
+
+        try {
+            object = classType.getConstructor().newInstance();
+        } catch (InvocationTargetException e) {
+            throw new UnableToInstantiateException(e);
+        } catch (NoSuchMethodException e) {
+            throw new UnableToInstantiateException(e);
+        } catch (InstantiationException e) {
+            throw new UnableToInstantiateException(e);
+        } catch (IllegalAccessException e) {
+            throw new UnableToInstantiateException(e);
+        }
+
+        return object;
+    }
 }

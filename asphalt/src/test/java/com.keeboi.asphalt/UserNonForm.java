@@ -8,6 +8,11 @@ public class UserNonForm {
 
     private String surname;
 
+    public UserNonForm(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
     public String getName() {
         return name;
     }

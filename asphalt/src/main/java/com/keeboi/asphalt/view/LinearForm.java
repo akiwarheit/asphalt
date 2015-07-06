@@ -6,25 +6,29 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
+import com.keeboi.asphalt.core.Paver;
+
 /**
  * Created by kdeloria on 7/3/2015.
  */
-public class LinearFormLayout<K> extends LinearLayout {
+public class LinearForm<K> extends LinearLayout {
 
-    public LinearFormLayout(Context context) {
+    Paver<K> paver;
+
+    public LinearForm(Context context) {
         super(context);
     }
 
-    public LinearFormLayout(Context context, AttributeSet attrs) {
+    public LinearForm(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public LinearFormLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LinearForm(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public LinearFormLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public LinearForm(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 }
