@@ -4,10 +4,10 @@ import android.view.View;
 
 import com.keeboi.asphalt.annotation.Form;
 import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
-import com.keeboi.asphalt.core.handler.Binder;
 import com.keeboi.asphalt.core.handler.Matcher;
-import com.keeboi.asphalt.core.handler.basic.DefaultBinder;
+import com.keeboi.asphalt.core.handler.Binder;
 import com.keeboi.asphalt.core.handler.basic.DefaultMatcher;
+import com.keeboi.asphalt.core.handler.basic.DefaultBinder;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -25,22 +25,22 @@ public class Paver<K> {
 
     private List<View> views;
 
-    Matcher<K> matcher;
-
     Binder<K> binder;
+
+    Matcher<K> matcher;
 
     public Paver(Class<K> classType, List<View> views) {
         this.classType = classType;
         this.views = views;
-        this.matcher = new DefaultMatcher<K>();
         this.binder = new DefaultBinder<K>();
+        this.matcher = new DefaultMatcher<K>();
     }
 
-    public Paver(Class<K> classType, List<View> views, Matcher<K> matcher, Binder<K> binder) {
+    public Paver(Class<K> classType, List<View> views, Binder<K> binder, Matcher<K> matcher) {
         this.classType = classType;
         this.views = views;
-        this.matcher = matcher;
         this.binder = binder;
+        this.matcher = matcher;
     }
 
     /**
@@ -75,7 +75,7 @@ public class Paver<K> {
         }
 
         Field[] fields = object.getClass().getDeclaredFields();
-        binder.bind(object, views, fields, matcher);
+        matcher.bind(object, views, fields, binder);
 
         return object;
     }
