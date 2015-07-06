@@ -25,9 +25,9 @@ public class Paver<K> {
 
     private List<View> views;
 
-    Binder<K> binder;
+    private Binder<K> binder;
 
-    Matcher<K> matcher;
+    private Matcher<K> matcher;
 
     public Paver(Class<K> classType, List<View> views) {
         this.classType = classType;
