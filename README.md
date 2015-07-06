@@ -1,50 +1,50 @@
 # Asphalt
-###### Form to object binding in Android
+###### Form to object one-way-binding library for Android
 
 The idea is that I can define a form as such
 
 ```
 <!-- Sample form without all the properties because I'm lazy as f -->
-    <com.keeboi.asphalt.view.LinearForm
-        android:id="@+id/linear_form"
+<com.keeboi.asphalt.view.LinearForm
+    android:id="@+id/linear_form"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="Kevin Jude Deloria" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kevin Jude Deloria" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Programmer" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Programmer" />
-
-    </com.keeboi.asphalt.view.LinearForm>
+</com.keeboi.asphalt.view.LinearForm>
 ```
 
 And automatically bind it to an object
 
 ```java
-    @Form
-    public class Person {
+@Form
+public class Person {
 
-        @Field
-        private String name;
+    @Field
+    private String name;
 
-        @Field
-        private String occupation;
+    @Field
+    private String occupation;
 
-        // Getters & setters
-    }
+    // Getters & setters
+}
 ```
 
 And it gets bound when I refer the `LinearForm` as such
 
 ```java
-    LinearForm<Person> linearForm = ((LinearForm<Person>) findViewById(R.id.linear_form));
-    linearForm.bind(Person.class);
-    Person user = linearForm.getObject();
+LinearForm<Person> linearForm = ((LinearForm<Person>) findViewById(R.id.linear_form));
+linearForm.bind(Person.class);
+Person user = linearForm.getObject();
 ```
 
 Or something like that
