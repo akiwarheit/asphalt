@@ -1,5 +1,7 @@
 package com.keeboi.asphalt;
 
+import android.content.Context;
+
 import com.keeboi.asphalt.core.Paver;
 import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
 
@@ -8,10 +10,14 @@ import junit.framework.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  * Created by kdeloria on 7/3/2015.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class PaverTest {
 
     @Rule

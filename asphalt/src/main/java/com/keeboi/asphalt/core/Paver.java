@@ -25,11 +25,22 @@ public class Paver<K> {
         this.views = views;
     }
 
+    /**
+     * Check if the object passed is annotated with @Form
+     *
+     * @return true if annotated, false otherwise
+     */
     public boolean isFormAnnotated() {
         Annotation annotation = classType.getAnnotation(Form.class);
         return annotation == null ? false : true;
     }
 
+    /**
+     * Instantiate the object
+     *
+     * @return the constructed object
+     * @throws UnableToInstantiateException is thrown when there is no default public constructor
+     */
     public K instantiate() throws UnableToInstantiateException {
         K object = null;
 
