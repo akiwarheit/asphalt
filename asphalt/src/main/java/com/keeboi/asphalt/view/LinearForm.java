@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.keeboi.asphalt.core.Paver;
 import com.keeboi.asphalt.core.exception.NoFormAnnotationException;
+import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +39,6 @@ public class LinearForm<K> extends LinearLayout {
     }
 
     public void bind(Class<K> clazz) throws NoFormAnnotationException {
-        if (paver.isFormAnnotated()) {
-            throw new NoFormAnnotationException(clazz);
-        }
-
         List<View> childViews = new ArrayList<View>();
 
         for (int x = 0; x < getChildCount(); x += 1) {
@@ -49,6 +46,14 @@ public class LinearForm<K> extends LinearLayout {
         }
 
         paver = new Paver<K>(clazz, childViews);
+        if (!paver.isFormAnnotated()) {
+            throw new NoFormAnnotationException(clazz);
+        }
+    }
+
+    public K getObject() throws UnableToInstantiateException {
+        K object = paver.instantiate();
+        return object;
     }
 
 }

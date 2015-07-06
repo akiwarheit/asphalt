@@ -1,3 +1,5 @@
+import com.keeboi.asphalt.core.exception.NoFormAnnotationException;
+import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
 import com.keeboi.asphalt.view.LinearForm;
 import com.keeboi.test.BuildConfig;
 import com.keeboi.test.MainActivity;
@@ -6,7 +8,10 @@ import com.keeboi.test.R;
 
 import junit.framework.Assert;
 
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
@@ -19,11 +24,32 @@ import org.robolectric.annotation.Config;
 @Config(constants = BuildConfig.class, emulateSdk = 18)
 public class MainActivityTest {
 
+    MainActivity mainActivity;
+
+    LinearForm<Person> userLinearForm;
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Before
+    public void setup() {
+        mainActivity = Robolectric.setupActivity(MainActivity.class);
+        userLinearForm = (LinearForm<Person>) mainActivity.findViewById(R.id.linear_form);
+    }
+
     @Test
-    public void testActivity() {
-        MainActivity mainActivity = Robolectric.setupActivity(MainActivity.class);
-        LinearForm<Person> userLinearForm = (LinearForm<Person>) mainActivity.findViewById(R.id.linear_form);
+    public void testForm() {
+        System.out.println("testForm");
         Assert.assertNotNull(userLinearForm);
+    }
+
+    @Test
+    public void testBind() throws UnableToInstantiateException, NoFormAnnotationException {
+        System.out.println("testBind");
+        Person person = null;
+        userLinearForm.bind(Person.class);
+        person = userLinearForm.getObject();
+        Assert.assertNotNull(person);
     }
 
 }
