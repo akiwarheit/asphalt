@@ -3,6 +3,7 @@ package com.keeboi.asphalt.core.handler.basic;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.keeboi.asphalt.core.handler.Binder;
 
@@ -21,6 +22,10 @@ public class DefaultBinder<K> implements Binder<K> {
         } else if (view instanceof CheckBox && (field.getType().equals(boolean.class) || field.getType().equals(Boolean.class))) {
             field.setAccessible(true);
             field.set(instance, ((CheckBox) view).isChecked());
+        } else if (view instanceof Spinner && field.getType().isEnum()) {
+            field.setAccessible(true);
+            Spinner spinner = (Spinner) view;
+            field.set(instance, ((Class<Enum>) field.getType()).getEnumConstants()[spinner.getSelectedItemPosition()]);
         }
     }
 }

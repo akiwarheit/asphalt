@@ -28,6 +28,11 @@
             android:checked="true"
             android:text="Married" />
 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </com.keeboi.asphalt.view.LinearForm>
 
 </RelativeLayout>

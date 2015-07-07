@@ -54,6 +54,9 @@ public class MainActivityTest {
         Assert.assertEquals(person.getName(), "Kevin Jude Deloria");
         Assert.assertEquals(person.getOccupation(), "Programmer");
         Assert.assertEquals(person.getMarried(), Boolean.TRUE);
+        System.out.println(person.getStatus());
+        Assert.assertNotNull(person.getStatus());
+
     }
 
 }

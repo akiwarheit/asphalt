@@ -16,8 +16,10 @@ public class Person {
     private String occupation;
 
     @Field
-    private
-    Boolean married;
+    private Boolean married;
+
+    @Field
+    private Status status;
 
     public String getName() {
         return name;
@@ -41,5 +43,17 @@ public class Person {
 
     public void setMarried(Boolean married) {
         this.married = married;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public enum Status {
+        AVAILABLE, BUSY, AWAY
     }
 }
