@@ -15,6 +15,10 @@ public class Person {
     @Field
     private String occupation;
 
+    @Field
+    private
+    Boolean married;
+
     public String getName() {
         return name;
     }
@@ -29,5 +33,13 @@ public class Person {
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
+    }
+
+    public Boolean getMarried() {
+        return married;
+    }
+
+    public void setMarried(Boolean married) {
+        this.married = married;
     }
 }

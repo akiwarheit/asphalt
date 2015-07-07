@@ -1,6 +1,7 @@
 package com.keeboi.asphalt.core.handler.basic;
 
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.keeboi.asphalt.core.handler.Binder;
@@ -17,6 +18,9 @@ public class DefaultBinder<K> implements Binder<K> {
         if (view instanceof EditText && field.getType().equals(String.class)) {
             field.setAccessible(true);
             field.set(instance, ((EditText) view).getText().toString());
+        } else if (view instanceof CheckBox && (field.getType().equals(boolean.class) || field.getType().equals(Boolean.class))) {
+            field.setAccessible(true);
+            field.set(instance, ((CheckBox) view).isChecked());
         }
     }
 }
