@@ -1,3 +1,6 @@
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+
 import com.keeboi.asphalt.core.exception.NoFormAnnotationException;
 import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
 import com.keeboi.asphalt.view.LinearForm;
@@ -46,17 +49,22 @@ public class MainActivityTest {
     @Test
     public void testBind() throws UnableToInstantiateException, NoFormAnnotationException, IllegalAccessException {
         System.out.println("testBind");
+
+        ((Spinner) mainActivity.findViewById(R.id.spinner)).setSelection(1); // Select the first element of the spinner (which should be BUSY)
+        ((RadioGroup) mainActivity.findViewById(R.id.radio_group)).check(R.id.male); // Set this radio group to Male
+
         Person person = null;
         userLinearForm.bind(Person.class);
         person = userLinearForm.getObject();
-        Assert.assertNotNull(person);
 
+        Assert.assertNotNull(person);
         Assert.assertEquals(person.getName(), "Kevin Jude Deloria");
         Assert.assertEquals(person.getOccupation(), "Programmer");
         Assert.assertEquals(person.getMarried(), Boolean.TRUE);
         System.out.println(person.getStatus());
         Assert.assertNotNull(person.getStatus());
-
+        System.out.println(person.getGender());
+        Assert.assertNotNull(person.getGender());
     }
 
 }

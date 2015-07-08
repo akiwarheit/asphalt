@@ -19,7 +19,6 @@ public class MainActivity extends ActionBarActivity {
                 R.array.status, android.R.layout.simple_spinner_item);
 
         ((Spinner) findViewById(R.id.spinner)).setAdapter(adapter);
-        ((Spinner) findViewById(R.id.spinner)).setSelection(1);
     }
 
     @Override

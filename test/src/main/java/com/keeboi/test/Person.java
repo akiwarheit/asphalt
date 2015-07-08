@@ -21,6 +21,9 @@ public class Person {
     @Field
     private Status status;
 
+    @Field
+    private Gender gender;
+
     public String getName() {
         return name;
     }
@@ -53,7 +56,20 @@ public class Person {
         this.status = status;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     public enum Status {
         AVAILABLE, BUSY, AWAY
     }
+
+    public enum Gender {
+        FEMALE, MALE
+    }
+
 }
