@@ -12,6 +12,8 @@ import com.keeboi.asphalt.core.exception.NoFormAnnotationException;
 import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -50,6 +52,17 @@ public class LinearForm<K> extends LinearLayout {
         for (int x = 0; x < getChildCount(); x += 1) {
             childViews.add(getChildAt(x));
         }
+
+        Collections.sort(childViews, new Comparator<View>() {
+            @Override
+            public int compare(View view, View t1) {
+                if(view.getTop() == t1.getTop()) {
+                    return 1;
+                }
+
+                return view.getTop() > t1.getTop() ? 1 : -1;
+            }
+        });
 
         paver = new Paver<K>(clazz, childViews);
         if (!paver.isFormAnnotated()) {

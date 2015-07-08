@@ -4,14 +4,17 @@ import android.view.View;
 
 import com.keeboi.asphalt.annotation.Form;
 import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
-import com.keeboi.asphalt.core.handler.Matcher;
 import com.keeboi.asphalt.core.handler.Binder;
-import com.keeboi.asphalt.core.handler.basic.DefaultMatcher;
+import com.keeboi.asphalt.core.handler.Matcher;
 import com.keeboi.asphalt.core.handler.basic.DefaultBinder;
+import com.keeboi.asphalt.core.handler.basic.DefaultMatcher;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -75,6 +78,26 @@ public class Paver<K> {
         }
 
         Field[] fields = object.getClass().getDeclaredFields();
+
+        List<Field> fieldList = Arrays.asList(fields);
+
+        Collections.sort(fieldList, new Comparator<Field>() {
+            @Override
+            public int compare(Field field, Field t1) {
+                com.keeboi.asphalt.annotation.Field annotation1 = field.getAnnotation(com.keeboi.asphalt.annotation.Field.class);
+                com.keeboi.asphalt.annotation.Field annotation2 = t1.getAnnotation(com.keeboi.asphalt.annotation.Field.class);
+                return annotation1.order() > annotation2.order() ? 1 : -1;
+            }
+        });
+
+        for (Field field : fields) {
+            System.out.println(field.getName() + " " + field.getType());
+        }
+
+        for (View view : views) {
+            System.out.println(view.getClass() + "" + " Top : " + view.getTop());
+        }
+
         matcher.bind(object, views, fields, binder);
 
         return object;
