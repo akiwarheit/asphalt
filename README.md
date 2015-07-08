@@ -9,7 +9,8 @@ The idea is we should objectify form handling, such that we can define a form wi
 <com.keeboi.asphalt.view.LinearForm
     android:id="@+id/linear_form"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <EditText
         android:layout_width="match_parent"
@@ -32,6 +33,25 @@ The idea is we should objectify form handling, such that we can define a form wi
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female" />
+
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male" />
+
+    </RadioGroup>
+
 </com.keeboi.asphalt.view.LinearForm>
 ```
 
@@ -41,23 +61,31 @@ And a corresponding object matching the structure of the form:
 @Form
 public class Person {
 
-    @Field
+    @Field(order = 1) // The order being the field's order in the Form
     private String name;
 
-    @Field
+    @Field(order = 2)
     private String occupation;
 
-    @Field
+    @Field(order = 3)
     private Boolean married;
 
-    @Field
+    @Field(order = 4)
     private Status status;
+
+    @Field(order = 5)
+    private Gender gender;
 
     // Getters & setters
 
     public enum Status {
         AVAILABLE, BUSY, AWAY
     }
+
+    public enum Gender {
+        FEMALE, MALE
+    }
+
 }
 ```
 
@@ -76,6 +104,7 @@ I've added default matching & binding for the ff. widgets & their corresponding 
 * `EditText` - `String`
 * `CheckBox` - `Boolean`
 * `Spinner` - `enum` (`ArrayAdapter`'s list of objects should match your `enum`)
+* `RadioGroup` - `enum`
 
 ## Sample Usage
 
