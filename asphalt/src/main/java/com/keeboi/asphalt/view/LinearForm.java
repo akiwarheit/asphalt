@@ -56,7 +56,7 @@ public class LinearForm<K> extends LinearLayout {
         Collections.sort(childViews, new Comparator<View>() {
             @Override
             public int compare(View view, View t1) {
-                if(view.getTop() == t1.getTop()) {
+                if (view.getTop() == t1.getTop()) {
                     return 1;
                 }
 

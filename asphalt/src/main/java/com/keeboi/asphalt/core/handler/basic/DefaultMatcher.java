@@ -22,8 +22,6 @@ public class DefaultMatcher<K> implements Matcher<K> {
 
             for (int y = x; y < fields.length; y += 1) {
                 Field field = fields[y]; // Iterating over all the fields based on the current View index
-                Log.i("view", view.getClass() + "");
-                Log.i("field", field.getType() + "");
                 if (field.isAnnotationPresent(com.keeboi.asphalt.annotation.Field.class)) {
                     try {
                         binder.handle(object, view, field);

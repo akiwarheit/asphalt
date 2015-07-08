@@ -90,14 +90,6 @@ public class Paver<K> {
             }
         });
 
-        for (Field field : fields) {
-            System.out.println(field.getName() + " " + field.getType());
-        }
-
-        for (View view : views) {
-            System.out.println(view.getClass() + "" + " Top : " + view.getTop());
-        }
-
         matcher.bind(object, views, fields, binder);
 
         return object;
