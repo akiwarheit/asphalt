@@ -10,16 +10,19 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kevin Jude Deloria" />
 
         <EditText
+            android:id="@+id/occupation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Programmer" />
 
         <CheckBox
+            android:id="@+id/married"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"

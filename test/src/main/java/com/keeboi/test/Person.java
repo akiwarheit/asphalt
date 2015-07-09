@@ -9,19 +9,19 @@ import com.keeboi.asphalt.annotation.Form;
 @Form
 public class Person {
 
-    @Field(order = 1)
+    @Field(viewId = R.id.name)
     private String name;
 
-    @Field(order = 2)
+    @Field(viewId = R.id.occupation)
     private String occupation;
 
-    @Field(order = 3)
+    @Field(viewId = R.id.married)
     private Boolean married;
 
-    @Field(order = 4)
+    @Field(viewId = R.id.spinner)
     private Status status;
 
-    @Field(order = 5)
+    @Field(viewId = R.id.radio_group)
     private Gender gender;
 
     public String getName() {

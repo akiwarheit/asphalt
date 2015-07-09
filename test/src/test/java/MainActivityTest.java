@@ -29,7 +29,7 @@ public class MainActivityTest {
 
     MainActivity mainActivity;
 
-    LinearForm<Person> userLinearForm;
+    LinearForm userLinearForm;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -37,7 +37,7 @@ public class MainActivityTest {
     @Before
     public void setup() {
         mainActivity = Robolectric.setupActivity(MainActivity.class);
-        userLinearForm = (LinearForm<Person>) mainActivity.findViewById(R.id.linear_form);
+        userLinearForm = (LinearForm) mainActivity.findViewById(R.id.linear_form);
     }
 
     @Test
@@ -49,13 +49,9 @@ public class MainActivityTest {
     @Test
     public void testBind() throws UnableToInstantiateException, NoFormAnnotationException, IllegalAccessException {
         System.out.println("testBind");
-
         ((Spinner) mainActivity.findViewById(R.id.spinner)).setSelection(1); // Select the first element of the spinner (which should be BUSY)
         ((RadioGroup) mainActivity.findViewById(R.id.radio_group)).check(R.id.male); // Set this radio group to Male
-
-        Person person = null;
-        userLinearForm.bind(Person.class);
-        person = userLinearForm.getObject();
+        Person person = userLinearForm.bind(Person.class);
 
         Assert.assertNotNull(person);
         Assert.assertEquals(person.getName(), "Kevin Jude Deloria");

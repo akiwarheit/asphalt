@@ -9,14 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
-import com.keeboi.asphalt.core.exception.NoFormAnnotationException;
 import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
 import com.keeboi.asphalt.view.LinearForm;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    LinearForm<Person> userLinearForm;
+    LinearForm userLinearForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
         ((Spinner) findViewById(R.id.spinner)).setSelection(1); // Select the first element of the spinner (which should be BUSY)
         ((RadioGroup) findViewById(R.id.radio_group)).check(R.id.male); // Set this radio group to Male
 
-        userLinearForm = (LinearForm<Person>) findViewById(R.id.linear_form);
+        userLinearForm = (LinearForm) findViewById(R.id.linear_form);
     }
 
     @Override
@@ -46,17 +45,14 @@ public class MainActivity extends ActionBarActivity {
         } else if (id == R.id.action_ok) {
             Person person = null;
             try {
-                userLinearForm.bind(Person.class);
-                person = userLinearForm.getObject();
+                person = userLinearForm.bind(Person.class);
 
                 System.out.println("" + person.getName());
                 System.out.println("" + person.getOccupation());
                 System.out.println("" + person.getMarried());
+                System.out.println("" + person.getStatus());
                 System.out.println("" + person.getGender());
-            } catch (NoFormAnnotationException e) {
-                Log.e("error", e.toString());
-            } catch (IllegalAccessException e) {
-                Log.e("error", e.toString());
+
             } catch (UnableToInstantiateException e) {
                 Log.e("error", e.toString());
             }

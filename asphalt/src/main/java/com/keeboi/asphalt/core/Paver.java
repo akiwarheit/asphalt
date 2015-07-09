@@ -1,21 +1,16 @@
 package com.keeboi.asphalt.core;
 
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.keeboi.asphalt.annotation.Form;
 import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
 import com.keeboi.asphalt.core.handler.Binder;
-import com.keeboi.asphalt.core.handler.Matcher;
 import com.keeboi.asphalt.core.handler.basic.DefaultBinder;
-import com.keeboi.asphalt.core.handler.basic.DefaultMatcher;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * Created by kdeloria on 7/3/2015.
@@ -26,24 +21,20 @@ public class Paver<K> {
 
     private Class<K> classType;
 
-    private List<View> views;
+    private ViewGroup viewGroup;
 
     private Binder<K> binder;
 
-    private Matcher<K> matcher;
-
-    public Paver(Class<K> classType, List<View> views) {
+    public Paver(Class<K> classType, ViewGroup viewGroup) {
         this.classType = classType;
-        this.views = views;
+        this.viewGroup = viewGroup;
         this.binder = new DefaultBinder<K>();
-        this.matcher = new DefaultMatcher<K>();
     }
 
-    public Paver(Class<K> classType, List<View> views, Binder<K> binder, Matcher<K> matcher) {
+    public Paver(Class<K> classType, ViewGroup viewGroup, Binder<K> binder) {
         this.classType = classType;
-        this.views = views;
+        this.viewGroup = viewGroup;
         this.binder = binder;
-        this.matcher = matcher;
     }
 
     /**
@@ -62,7 +53,7 @@ public class Paver<K> {
      * @return the constructed object
      * @throws UnableToInstantiateException if no basic constructor or unable to resolve view - field matching
      */
-    public K instantiate() throws UnableToInstantiateException, IllegalAccessException {
+    public K instantiate() throws UnableToInstantiateException {
         K object = null;
 
         try {
@@ -79,18 +70,20 @@ public class Paver<K> {
 
         Field[] fields = object.getClass().getDeclaredFields();
 
-        List<Field> fieldList = Arrays.asList(fields);
+        for (Field field : fields) {
+            if (!field.isAnnotationPresent(com.keeboi.asphalt.annotation.Field.class)) {
+                continue;
+            } else {
+                com.keeboi.asphalt.annotation.Field annotation = field.getAnnotation(com.keeboi.asphalt.annotation.Field.class);
+                View view = viewGroup.findViewById(annotation.viewId());
 
-        Collections.sort(fieldList, new Comparator<Field>() {
-            @Override
-            public int compare(Field field, Field t1) {
-                com.keeboi.asphalt.annotation.Field annotation1 = field.getAnnotation(com.keeboi.asphalt.annotation.Field.class);
-                com.keeboi.asphalt.annotation.Field annotation2 = t1.getAnnotation(com.keeboi.asphalt.annotation.Field.class);
-                return annotation1.order() > annotation2.order() ? 1 : -1;
+                try {
+                    binder.handle(object, view, field);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
             }
-        });
-
-        matcher.bind(object, views, fields, binder);
+        }
 
         return object;
     }

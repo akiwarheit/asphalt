@@ -1,5 +1,8 @@
 package com.keeboi.asphalt.annotation;
 
+import com.keeboi.asphalt.core.handler.Binder;
+import com.keeboi.asphalt.core.handler.basic.DefaultBinder;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -13,5 +16,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = ElementType.FIELD)
 public @interface Field {
-    int order();
+    int viewId();
+
+    Class<? extends Binder> binder() default DefaultBinder.class;
 }
