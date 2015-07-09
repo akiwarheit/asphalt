@@ -14,8 +14,6 @@ import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
  */
 public class LinearForm extends LinearLayout {
 
-    private Paver paver;
-
     public LinearForm(Context context) {
         super(context);
     }
