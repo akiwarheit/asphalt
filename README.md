@@ -108,9 +108,30 @@ I've added default matching & binding for the ff. widgets & their corresponding 
 * `Spinner` - `enum` (`ArrayAdapter`'s list of objects should match your `enum`)
 * `RadioGroup` - `enum`
 
-## Sample Usage
+## Custom Binding
 
-@TODO I'll update this once I have more bindings :)
+If you have a custom view (for example, `MyCustomView`) you want to bind to your field, you can create a custom `Binder` implementation, here is an example:
+
+```java
+public class MyCustomBinder<K> implements Binder<K> {
+
+    @Override
+    public void handle(K instance, View view, Field field) throws IllegalAccessException {
+        String value = ((MyCustomView) view).getStringFromThisCustomView(); // cast this view object to your custom object
+        field.setAccessible(true); // accessibility
+        field.set(instance, value); // setting the value for this instance's field
+    }
+}
+```
+
+And pass the implementation of this custom binder as your strategy
+
+```java
+    @Field(viewId = R.id.my_custom_view, strategy = MyCustomBinder.class)
+    String field;
+```
+
+The only constraint is it should have a constructor.
 
 <pre>
 Copyright 2015 Kevin Jude A. Deloria

@@ -18,5 +18,5 @@ import java.lang.annotation.Target;
 public @interface Field {
     int viewId();
 
-    Class<? extends Binder> binder() default DefaultBinder.class;
+    Class<? extends Binder> strategy() default DefaultBinder.class;
 }

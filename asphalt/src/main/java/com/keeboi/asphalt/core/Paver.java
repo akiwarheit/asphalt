@@ -54,7 +54,7 @@ public class Paver<K> {
             } else {
                 com.keeboi.asphalt.annotation.Field annotation = field.getAnnotation(com.keeboi.asphalt.annotation.Field.class);
                 View view = viewGroup.findViewById(annotation.viewId());
-                Class<? extends Binder> binderClazz = annotation.binder();
+                Class<? extends Binder> binderClazz = annotation.strategy();
 
                 Binder<K> binder = null;
 
