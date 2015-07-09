@@ -58,6 +58,7 @@ install {
                 artifactId 'asphalt'
                 name 'Form library for Android'
                 url siteUrl
+                version android.defaultConfig.versionName
 
                 // Set your license
                 licenses {
