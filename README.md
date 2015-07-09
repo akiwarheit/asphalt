@@ -1,4 +1,4 @@
-# Asphalt [![Build Status](https://travis-ci.org/akiwarheit/asphalt.svg)](https://travis-ci.org/akiwarheit/asphalt)
+# Asphalt [![Build Status](https://travis-ci.org/akiwarheit/asphalt.svg)](https://travis-ci.org/akiwarheit/asphalt) [![Download](https://api.bintray.com/packages/akiwarheit/maven/asphalt/images/download.svg) ](https://bintray.com/akiwarheit/maven/asphalt/_latestVersion)
 ###### Form to object one-way-binding library for Android
 
 ## The Concept
