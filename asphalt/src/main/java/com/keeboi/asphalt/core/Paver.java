@@ -3,12 +3,9 @@ package com.keeboi.asphalt.core;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.keeboi.asphalt.annotation.Form;
 import com.keeboi.asphalt.core.exception.UnableToInstantiateException;
 import com.keeboi.asphalt.core.handler.Binder;
-import com.keeboi.asphalt.core.handler.basic.DefaultBinder;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
@@ -23,28 +20,9 @@ public class Paver<K> {
 
     private ViewGroup viewGroup;
 
-    private Binder<K> binder;
-
     public Paver(Class<K> classType, ViewGroup viewGroup) {
         this.classType = classType;
         this.viewGroup = viewGroup;
-        this.binder = new DefaultBinder<K>();
-    }
-
-    public Paver(Class<K> classType, ViewGroup viewGroup, Binder<K> binder) {
-        this.classType = classType;
-        this.viewGroup = viewGroup;
-        this.binder = binder;
-    }
-
-    /**
-     * Check if the object passed is annotated with @Form
-     *
-     * @return true if annotated, false otherwise
-     */
-    public boolean isFormAnnotated() {
-        Annotation annotation = classType.getAnnotation(Form.class);
-        return annotation == null ? false : true;
     }
 
     /**
@@ -76,6 +54,21 @@ public class Paver<K> {
             } else {
                 com.keeboi.asphalt.annotation.Field annotation = field.getAnnotation(com.keeboi.asphalt.annotation.Field.class);
                 View view = viewGroup.findViewById(annotation.viewId());
+                Class<? extends Binder> binderClazz = annotation.binder();
+
+                Binder<K> binder = null;
+
+                try {
+                    binder = binderClazz.getConstructor().newInstance();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
 
                 try {
                     binder.handle(object, view, field);
