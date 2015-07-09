@@ -58,7 +58,7 @@ install {
                 artifactId 'asphalt'
                 name 'Form library for Android'
                 url siteUrl
-                version android.defaultConfig.versionName
+                version "0.0.1-BETA"
 
                 // Set your license
                 licenses {
@@ -123,7 +123,7 @@ bintray {
 
         version {
             name = android.defaultConfig.versionName
-            desc = 'Fixes and stuff '
+            desc = ''
         }
     }
 }
