@@ -13,16 +13,19 @@ The idea is we should objectify form handling, such that we can define a form wi
     android:orientation="vertical">
 
     <EditText
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Kevin Jude Deloria" />
 
     <EditText
+        android:id="@+id/occupation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Programmer" />
 
     <CheckBox
+        android:id="@+id/married"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="true"
@@ -61,19 +64,19 @@ And a corresponding object matching the structure of the form:
 @Form
 public class Person {
 
-    @Field(order = 1) // The order being the field's order in the Form
+    @Field(viewId = R.id.name)
     private String name;
 
-    @Field(order = 2)
+    @Field(viewId = R.id.occupation)
     private String occupation;
 
-    @Field(order = 3)
+    @Field(viewId = R.id.married)
     private Boolean married;
 
-    @Field(order = 4)
+    @Field(viewId = R.id.spinner)
     private Status status;
 
-    @Field(order = 5)
+    @Field(viewId = R.id.radio_group)
     private Gender gender;
 
     // Getters & setters
@@ -92,9 +95,8 @@ public class Person {
 And then bind to construct the object:
 
 ```java
-LinearForm<Person> linearForm = ((LinearForm<Person>) findViewById(R.id.linear_form));
-linearForm.bind(Person.class);
-Person user = linearForm.getObject();
+LinearForm userLinearForm = (LinearForm) findViewById(R.id.linear_form);
+person = userLinearForm.bind(Person.class);
 ```
 
 ## Supported View Widgets
