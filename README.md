@@ -1,4 +1,8 @@
-# Asphalt [![Build Status](https://travis-ci.org/akiwarheit/asphalt.svg)](https://travis-ci.org/akiwarheit/asphalt) [![Download](https://api.bintray.com/packages/akiwarheit/maven/asphalt/images/download.svg) ](https://bintray.com/akiwarheit/maven/asphalt/_latestVersion)[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+# Asphalt ![Circle CI](https://circleci.com/gh/akiwarheit/asphalt.png?circle-token=3cf0ff70e075bd184c30f4576237f3916f370d95) [![Download](https://api.bintray.com/packages/akiwarheit/maven/asphalt/images/download.svg) ](https://bintray.com/akiwarheit/maven/asphalt/_latestVersion)[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+
+
+
+
 ###### Form to object one-way-binding library for Android
 
 
