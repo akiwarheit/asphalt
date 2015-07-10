@@ -1,6 +1,7 @@
 # Asphalt [![Build Status](https://travis-ci.org/akiwarheit/asphalt.svg)](https://travis-ci.org/akiwarheit/asphalt) [![Download](https://api.bintray.com/packages/akiwarheit/maven/asphalt/images/download.svg) ](https://bintray.com/akiwarheit/maven/asphalt/_latestVersion)[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 ###### Form to object one-way-binding library for Android
 
+
 ## The Concept
 
 The idea is we should objectify form handling, such that we can define a form with the ff. layout:
@@ -131,7 +132,27 @@ And pass the implementation of this custom binder as your strategy
     String field;
 ```
 
-The only constraint is it should have a constructor.
+The only constraint is **it should have a default public constructor.**
+
+
+## Gradle
+
+It's not yet linked to JCenter yet, so add my maven repo:
+
+```gradle
+repositories {
+    maven {
+        url "http://dl.bintray.com/akiwarheit/maven"
+    }
+}
+```
+And the dependency to your `build.gradle`
+
+```gradle
+compile 'com.keeboi.asphalt:asphalt:0.0.1-BETA@aar'
+```
+
+**Refer to my badge above for latest version**
 
 <pre>
 Copyright 2015 Kevin Jude A. Deloria
