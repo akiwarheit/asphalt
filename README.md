@@ -158,6 +158,10 @@ compile 'com.keeboi.asphalt:asphalt:0.0.1-BETA@aar'
 
 **Refer to my badge above for latest version**
 
+## Thanks
+
+If you find this library helpful, please [donate](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=YMFZPR6ZDTKQL&lc=PH&item_name=Keeboi&item_number=asphalt%2ddonation&currency_code=PHP&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted), any amount will do (20 pesos buys me a barbecue, I won't complain!)
+
 <pre>
 Copyright 2015 Kevin Jude A. Deloria
 
