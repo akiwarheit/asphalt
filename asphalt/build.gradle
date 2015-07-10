@@ -7,6 +7,8 @@ repositories {
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
+version = "0.0.1-BETA"
+
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
@@ -122,8 +124,8 @@ bintray {
         publish = true
 
         version {
-            name = android.defaultConfig.versionName
-            desc = ''
+            name = "0.0.1-BETA"
+            desc = 'Beta release'
         }
     }
 }
